@@ -1,0 +1,130 @@
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>218</x><y>730</y><w>890</w><h>550</h></coordinates><panel_attributes>Robot
+--
+- x : int
+- y : int
+- moveType ;string
+- team : Team
+- canvas : Canvas
+- city : City
+- fenetre : Window
+- weight : int
+- maxWeight : int
+- maxBattery : int
+- batteryLevel : int
+- speed : int
+- isLoading : bool
+- photo : PhotoImage
+- photoZoom : PhotoImage
+- markedTask : void
+--
++ __construct(int x, int y, string moveType, Team team, Canvas canvas, City city, int maxWeight, int maxBattery, int batteryLevel, int speed, Window fenetre):void
++ addWeight(float weight):int
++ unload():bool
++ moveItself(string direction) : array
++ moveItSelfFromCoord(array coord) : array
++ randomMove(City city) :  array
++ detectTask(City city) : array
++ aEtoileMove(City city, array posTask): array
++ determineNodesInfos(array pos, array start, array goal) : array
++  getNeighbours(array pos, array start, array goal, City city) : array
++ isNodeInTheList(array node, array liste) : bool
++ findTaskFrom00(City city) : array
++ findTaskFromRobotPos(City city, , Bool currentAuction) : array
++ findLoadingFromRobotPos(City city) : array
++ needLoading() : bool
++ detectLoading(City city) : array
++ isTaskMarked(City city, Task task) : bool
++ showBattery(Canvas meter) : void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1228</x><y>880</y><w>320</w><h>150</h></coordinates><panel_attributes>Team
+--
+- robots : array
+- point : int 
+- color : Canvas
+--
++ __construct(Canvas : color) : void
++ addRobot(Robot robot): void
++ addPoint(int point) : void
++ auctionAgainstOtherTeam(Task task, Team team): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>48</x><y>890</y><w>140</w><h>70</h></coordinates><panel_attributes>Retourne true si le poids
+a pu être pris par le
+robot, faux sinon.
+bg=red</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1098</x><y>910</y><w>150</w><h>60</h></coordinates><panel_attributes>lt=-
+m1=0..n \n theRobots
+m2=0..1
+belonging to &gt;</panel_attributes><additional_attributes>10;20;130;20</additional_attributes></element><element><id>Relation</id><coordinates><x>178</x><y>920</y><w>60</w><h>30</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>40;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1978</x><y>620</y><w>240</w><h>160</h></coordinates><panel_attributes>Building
+--
+- x : int
+- y : int
+- sizeX : int
+- sizeY : int
+- bType : string
+--
++__construct(int x, int y, int sizeX, int sizeY, 
+string bType ) : void
++ createBuilding(City city): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1218</x><y>0</y><w>330</w><h>140</h></coordinates><panel_attributes>Task
+--
+- x : int
+- y : int
+- pointValue : int
+- typeT : string
+- belongsTo : void
+--
++__construct(int x, int y, string typeT, int pointValue) : void
++ addTask(City city) : void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1428</x><y>780</y><w>80</w><h>120</h></coordinates><panel_attributes>lt=-
+m1=2..2 \n theTeams
+m2=1..1
+serving ^</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1538</x><y>130</y><w>100</w><h>200</h></coordinates><panel_attributes>lt=-
+m1=0..n \n theTasks
+m2=1..1
+managing ^</panel_attributes><additional_attributes>10;10;10;180</additional_attributes></element><element><id>Relation</id><coordinates><x>1308</x><y>130</y><w>120</w><h>770</h></coordinates><panel_attributes>lt=-
+m1=0..n \n theTasks
+m2=0..1
+be in charge of ^</panel_attributes><additional_attributes>10;10;10;750</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1428</x><y>310</y><w>430</w><h>480</h></coordinates><panel_attributes>City
+--
+- sizeX : int
+- sizeY : int
+- matrix : array
+- canvas : Canvas
+- fenetre : Window
+- photo : PhotoImage
+- photoZoom : PhotoImage
+- idPhoto : array
+- buildings : array
+- tasks : array
+- imgRobots : array
+- ourTasks : array
+- randomGenerate : Buildings
+- addRandomTask : Task
+- teams : array
+- generateTeams : Teams 
+- mult : int
+- reload : int
+--
++__construct(int sizeX, int SizeY,Canvas canvas, Window fenetre) : void
++ getCel(int x, int y) : array
++ detectSpace(Building bat) : bool
++ randomGenerate(Canvas canvas) : void
++ refreshGenerate(Canvas canvas) : void
++ generateTeams(Canvas canvas, Window fenetre, int nbTeams, int nbRobots)
++ addRandomTask(Canvas canvas) : Task
++ getTask(int x, int y): Task
++ removeTask(array pos): void
++ deplacement(Canvas canvas, Window fenetre) : void
++ isAuctionMarked() : array
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1848</x><y>670</y><w>150</w><h>60</h></coordinates><panel_attributes>lt=-
+m1=0..n
+m2=0..1 \n theBuildings
+&lt; being a part of</panel_attributes><additional_attributes>10;20;130;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1578</x><y>910</y><w>280</w><h>130</h></coordinates><panel_attributes>_Case_
+--
+- x : int
+- y : int
+- status : string
+- charge : bool
+--
++ __construct(int x, int y, status)
++ to_string()  : string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>1918</x><y>920</y><w>300</w><h>100</h></coordinates><panel_attributes>les murs sont dans l'ordre : N, S, E, O.
+la valeur est à True si un mur est présent, False sinon
+bg=red</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1848</x><y>960</y><w>90</w><h>30</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;70;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1678</x><y>780</y><w>90</w><h>150</h></coordinates><panel_attributes>lt=-
+m1=0..n
+m2=0..1
+attach to &gt;</panel_attributes><additional_attributes>10;10;10;130</additional_attributes></element></diagram>
